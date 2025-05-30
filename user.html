@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Dashboard - CitizenComplaint</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" />
+  <style>
+    :root {
+      --primary-blue: #1a4b8c;
+      --secondary-blue: #3a7bd5;
+      --light-blue: #e6f0fa;
+      --sidebar-width: 280px;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f7fa;
+      padding-top: 56px;
+    }
+
+    .sidebar {
+      width: var(--sidebar-width);
+      height: 100vh;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: white;
+      box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+      padding-top: 70px;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .sidebar.collapsed {
+      transform: translateX(-100%);
+    }
+
+    .main-content {
+      margin-left: var(--sidebar-width);
+      padding: 30px;
+      transition: margin-left 0.3s ease-in-out;
+    }
+
+    .sidebar.collapsed ~ .main-content {
+      margin-left: 0;
+    }
+
+    .user-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--light-blue);
+      margin-bottom: 10px;
+    }
+
+    .nav-link {
+      color: #555;
+      padding: 10px 25px;
+      border-radius: 0 30px 30px 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-link i {
+      margin-right: 10px;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      background-color: var(--light-blue);
+      color: var(--primary-blue);
+    }
+
+    .step-indicator {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+
+    .step {
+      flex: 1;
+      min-width: 100px;
+      text-align: center;
+      position: relative;
+    }
+
+    .step-number {
+      width: 40px;
+      height: 40px;
+      background-color: #e0e0e0;
+      color: #999;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 10px;
+      font-weight: 600;
+    }
+
+    .step.active .step-number {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    .step.completed .step-number {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .btn-next, .btn-back {
+      padding: 10px 25px;
+      border-radius: 5px;
+      margin-left: 10px;
+    }
+
+    .btn-next {
+      background-color: var(--primary-blue);
+      color: white;
+    }
+
+    .btn-back {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    @media (max-width: 991.98px) {
+      .sidebar {
+        transform: translateX(-100%);
+      }
+
+      .sidebar.show {
+        transform: translateX(0);
+        z-index: 999;
+      }
+
+      .main-content {
+        margin-left: 0;
+        padding: 15px;
+      }
+
+      .navbar-toggler {
+        display: inline-block;
+      }
+    }
+    footer {
+      background-color: #f8f9fa;
+      padding: 20px 0;
+      text-align: center;
+      color: #777;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: var(--primary-blue);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+    .step-title {
+      font-size: 0.9rem;
+      color: #666;
+    }
+    .step.active .step-title {
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+    .step.completed .step-title {
+      color: #4caf50;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Top Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-white shadow-sm">
+  <div class="container-fluid">
+    <button class="navbar-toggler d-lg-none" type="button" onclick="toggleSidebar()">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand fw-bold" style="color: var(--primary-blue);" href="#">CitizenComplaint</a>
+  </div>
+</nav>
+
+<!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+  <div class="text-center px-3">
+    <img src="https://ficquotes.com/images/characters/raju-rastogi-3-idiots.jpg" class="user-avatar" alt="User">
+    <h6 class="fw-bold">Raju Rastogi</h6>
+    <p class="text-muted small mb-0">C/O - Mr. Rastogi</p>
+    <p class="text-muted small mb-0">DOB: 15 Aug 1985</p>
+    <p class="text-muted small">Patna, Bihar</p>
+    <span class="badge bg-success">Premium User</span>
+  </div>
+  <div class="nav flex-column mt-4">
+    <a href="#" class="nav-link active"><i class="bi bi-house"></i> Dashboard</a>
+    <a href="#" class="nav-link"><i class="bi bi-file-earmark-text"></i> My Complaints</a>
+    <a href="#" class="nav-link"><i class="bi bi-search"></i> Track Complaint</a>
+    <a href="#" class="nav-link"><i class="bi bi-collection"></i> Templates</a>
+    <a href="#" class="nav-link"><i class="bi bi-question-circle"></i> Support</a>
+    <a href="#" class="nav-link mt-3"><i class="bi bi-star-fill text-warning"></i> Premium Features</a>
+  </div>
+</div>
+
+<!-- Main Content -->
+<div class="main-content">
+  <h3>Welcome back, Raju!</h3>
+  <p class="text-muted mb-4">File a new complaint or check the status of existing ones.</p>
+
+  <div class="bg-white p-4 rounded shadow-sm mb-4">
+    <h5>File Your Complaint</h5>
+    <p class="text-muted">Select the relevant department and officer to address your concern.</p>
+
+    <!-- Steps -->
+    <div class="step-indicator">
+      <div class="step active">
+        <div class="step-number">1</div>
+        <div class="step-title small">Complaint Details</div>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <div class="step-title small">Department</div>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <div class="step-title small">Submit</div>
+      </div>
+    </div>
+
+    <!-- Select Inputs -->
+    <div class="row">
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Select State</label>
+        <select class="form-select">
+          <option selected disabled>Choose State</option>
+          <option>Bihar</option>
+          <option>Uttar Pradesh</option>
+          <option>Maharashtra</option>
+          <option>West Bengal</option>
+        </select>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label class="form-label">Select District</label>
+        <select class="form-select">
+          <option selected disabled>Choose District</option>
+          <option>Patna</option>
+          <option>Gaya</option>
+          <option>Bhagalpur</option>
+          <option>Muzaffarpur</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-back">Back</button>
+      <button class="btn btn-next">Next</button>
+    </div>
+  </div>
+
+  <footer class="pt-4 mt-5 border-top small text-muted">
+    <div class="d-flex flex-wrap justify-content-between">
+      <p text->© 2025 CitizenComplaint. All rights reserved.</p>
+      <div>
+        <a href="help.html" class="text-decoration-none mx-2">Help</a>
+        <a href="service.html" class="text-decoration-none mx-2">Services</a>
+      </div>
+        <div>
+            <a href="term.html" class="text-decoration-none mx-2">Terms of Service</a>
+            <a href="Contact Us.html" class="text-decoration-none mx-2">Contact Us</a>    
+    </div>
+        </div>
+    <p class="text-muted small mt-3 text-center">
+  This platform was crafted with ❤️ by the <strong>CitizenComplaint Team</strong> and proudly developed in collaboration with <strong>Travally Developers</strong>.
+</p>
+    
+  </footer>
+</div>
+
+<!-- Script to toggle sidebar -->
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("show");
+  }
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

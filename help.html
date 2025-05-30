@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Help & Support - Right2Complaint</title>
+  <link rel="icon" href="logo2.png" type="image/x-icon" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <style>
+    :root {
+      --primary-blue: #1a4b8c;
+      --secondary-blue: #3a7bd5;
+      --light-bg: #f8f9fa;
+      --accent: #e6f0fa;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--light-bg);
+      color: #333;
+    }
+
+    .help-header {
+      background: linear-gradient(to right, var(--primary-blue), var(--secondary-blue));
+      color: white;
+      padding: 60px 0;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .help-header h1 {
+      font-weight: 700;
+      font-size: 2.5rem;
+    }
+
+    .section-title {
+      color: var(--primary-blue);
+      font-weight: 700;
+      margin-bottom: 30px;
+      text-align: center;
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background: var(--secondary-blue);
+      margin: 10px auto 0;
+    }
+
+    .faq-item {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px 30px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      transition: 0.3s ease;
+    }
+
+    .faq-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .faq-item h5 {
+      color: var(--primary-blue);
+      font-weight: 600;
+    }
+
+    .contact-card {
+      background: white;
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-top: 50px;
+    }
+
+    .contact-card h4 {
+      color: var(--primary-blue);
+      font-weight: 700;
+    }
+
+    .contact-card a {
+      color: var(--secondary-blue);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 60px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <div class="help-header">
+    <div class="container">
+      <h1>Help & Support</h1>
+      <p class="lead mt-3">We're here to help. Find answers to common questions or contact us directly.</p>
+    </div>
+  </div>
+
+  <!-- FAQs -->
+  <div class="container mb-5">
+    <h2 class="section-title">Frequently Asked Questions</h2>
+
+    <div class="faq-item">
+      <h5>How do I reset my password?</h5>
+      <p>Visit the login page and click on "Forgot Password". Follow the email instructions to reset it securely.</p>
+    </div>
+
+    <div class="faq-item">
+      <h5>How can I track my complaint?</h5>
+      <p>Go to your dashboard and check the "My Complaints" section. You'll see real-time updates there.</p>
+    </div>
+
+    <div class="faq-item">
+      <h5>What are Premium features?</h5>
+      <p>Premium users get faster processing, AI-generated drafts, and access to expert support via chat and email.</p>
+    </div>
+
+    <div class="faq-item">
+      <h5>Can I file a complaint without Aadhaar?</h5>
+      <p>Yes, you can file a complaint using basic details, but Aadhaar verification unlocks faster routing and premium benefits.</p>
+    </div>
+
+    <div class="faq-item">
+      <h5>Is my data secure?</h5>
+      <p>Absolutely. Your data is encrypted and handled according to India's Digital Personal Data Protection Bill, 2023.</p>
+    </div>
+
+    <!-- Contact Card -->
+    <div class="contact-card">
+      <h4>Still Need Help?</h4>
+      <p>Email us at <a href="mailto:right2complaint@r2c.in">right2complaint@r2c.in</a></p>
+      <p>Call us: <strong>+91 8100-00-0018</strong></p>
+      <p>Support Hours: Mon–Fri (9AM–6PM), Sat (10AM–2PM)</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Right2Complaint. All rights reserved.</p>
+    <p class="text-muted small">Built with ❤️ by the CitizenComplaint Team in collaboration with Travally Developers.</p>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
